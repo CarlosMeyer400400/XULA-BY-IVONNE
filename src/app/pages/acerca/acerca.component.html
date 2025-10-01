@@ -1,0 +1,185 @@
+<div class="acerca-container">
+    <div class="acerca-left-image">
+        <img src="/assets/acerca/acerca.png" alt="Mujer recibiendo tratamiento de belleza" class="acerca-image">
+    </div>
+
+    <div class="acerca-right-content">
+        <h1 class="acerca-title">ACERCA DE NOSOTROS</h1>
+        
+        <div class="acerca-grid">
+            
+            <div class="vision-box">
+                <h2 class="section-heading">Vision</h2>
+                <p class="section-text">
+                    Ser un estudio de belleza referente en Querétaro por nuestra excelencia, estilo e innovación, creando experiencias únicas que inspiren confianza y distinción.
+                </p>
+            </div>
+            
+            <div class="mision-box">
+                <h2 class="section-heading">Mision.</h2>
+                <p class="section-text mision-text">
+                    En XULA nos dedicamos a realizar la belleza natural de cada persona a través de técnicas de micropigmentación y servicios de estética de alta calidad. Brindamos una experiencia cálida, personalizada y profesional, cuidando cada detalle para que nuestras clientas se sientan seguras, confiadas y únicas.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    /* VARIABLES */
+    :root {
+        --main-color: #8b5e3c; /* Marrón tierra */
+        --title-font: serif; 
+        --body-font: serif; 
+    }
+
+    /* --- ESTILOS BASE (Desktop) --- */
+    .acerca-container {
+        display: flex;
+        width: 100%;
+        min-height: 100vh;
+        background-color: white; 
+        /* FIX DEFINITIVO: Oculta cualquier desbordamiento horizontal */
+        overflow-x: hidden; 
+    }
+
+    /* Aplicar box-sizing a todos los elementos para manejo seguro del padding */
+    .acerca-container *, .acerca-container *::before, .acerca-container *::after {
+        box-sizing: border-box;
+    }
+
+    .acerca-left-image {
+        width: 40%; 
+        overflow: hidden;
+    }
+
+    .acerca-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        display: block;
+    }
+
+    .acerca-right-content {
+        width: 60%;
+        padding: 60px 80px;
+        color: var(--main-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .acerca-title {
+        font-family: var(--title-font);
+        font-size: 5vw; 
+        font-weight: 300;
+        margin-top: 0;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+        line-height: 1;
+        /* FIX: Previene que palabras muy largas (aunque no debería aplicar aquí) desborden */
+        word-wrap: break-word; 
+    }
+
+    .acerca-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        gap: 50px;
+        width: 100%;
+        max-width: 1000px;
+        text-align: left; 
+    }
+
+    .section-heading {
+        font-family: var(--title-font);
+        font-size: 4vw; 
+        font-weight: 400;
+        line-height: 1.1;
+        margin: 0 0 20px 0;
+    }
+
+    .section-text {
+        font-family: var(--body-font);
+        font-size: 1.15vw; 
+        line-height: 1.6;
+        word-wrap: break-word; /* FIX: Seguridad extra en el texto largo */
+    }
+    
+    .mision-box {
+        text-align: right;
+    }
+    
+    .mision-text {
+        font-style: italic;
+    }
+    
+    /* --- MEDIA QUERIES (Responsividad) --- */
+
+    /* Para móviles (hasta 768px de ancho) */
+    @media (max-width: 768px) {
+        .acerca-container {
+            flex-direction: column; 
+            min-height: auto;
+        }
+
+        .acerca-left-image {
+            width: 100%; 
+            height: 400px; 
+        }
+
+        .acerca-right-content {
+            width: 100%;
+            padding: 40px 30px;
+        }
+
+        .acerca-title {
+            font-size: 8vw; 
+            margin-bottom: 30px;
+        }
+
+        .acerca-grid {
+            grid-template-columns: 1fr; 
+            gap: 40px;
+            text-align: center; 
+        }
+        
+        .section-heading {
+            font-size: 8vw;
+        }
+        
+        .section-text {
+            font-size: 4.5vw; 
+            text-align: center; 
+        }
+        
+        .vision-box, .mision-box {
+            text-align: center;
+        }
+    }
+
+    /* Para móviles pequeños (hasta 480px de ancho) */
+    @media (max-width: 480px) {
+        .acerca-left-image {
+            height: 300px;
+        }
+        
+        .acerca-right-content {
+            /* FIX CRÍTICO: Reducimos el padding horizontal al mínimo para dar espacio al contenido */
+            padding: 30px 10px; 
+        }
+        
+        .acerca-title {
+            font-size: 6.5vw; /* Reducimos un poco más el título principal */
+        }
+        
+        .section-heading {
+            font-size: 6vw;
+        }
+
+        .section-text {
+            font-size: 3.8vw;
+        }
+    }
+</style>

@@ -1,0 +1,177 @@
+<div class="ivonne-container" style="background-color: #B2A7A1;">
+    <div class="ivonne-left-content">
+        <h1 class="ivonne-title">IVONNE PRADO</h1>
+        <p class="ivonne-paragraph">
+            Soy Ivonne Prado, micropigmentadora con más de 10 años de experiencia. Me apasiona la estética, la belleza y la salud corporal, 
+            por eso me mantengo en constante capacitación en las últimas técnicas de micropigmentación.
+        </p>
+        <p class="ivonne-paragraph">
+            Además, ofrezco servicios de aplicación de pestañas y uñas, siempre con un trato amable y profesional. Como mamá de niñas, 
+            entiendo lo valioso que es sentirte segura y resaltar tu belleza natural con resultados de calidad.
+        </p>
+    </div>
+    <div class="ivonne-right-image">
+        <img src="/assets/ivonne/ivonne.png" alt="Ivonne Prado" class="ivonne-image">
+    </div>
+</div>
+
+<style>
+    /* Variables para facilitar los cambios de color y fuente */
+    :root {
+        /* Color de fondo del contenedor general */
+        --container-background-color: #B2A7A1; 
+        /* Color de fondo del panel de texto: BLANCO (solicitado) */
+        --panel-background-color: #FFFFFF; 
+        /* Color del texto (gris oscuro/marrón) */
+        --text-color: #554440; 
+        /* Color del título (marrón cálido) */
+        --title-color: #8B5E3C; 
+        /* Fuente sugerida */
+        --title-font: 'Playfair Display', serif; 
+        /* Fuente para el párrafo */
+        --paragraph-font: 'Montserrat', sans-serif; 
+    }
+
+    /* Reset básico y box-sizing */
+    .ivonne-container *, .ivonne-container *::before, .ivonne-container *::after {
+        box-sizing: border-box;
+    }
+
+    /* --- ESTILOS BASE (Desktop) --- */
+
+    .ivonne-container {
+        display: flex;
+        width: 100%;
+        /* Ocupa exactamente el 100% de la altura de la pantalla */
+        height: 100vh; 
+        /* Fondo del contenedor general, obtenido del style inline anterior */
+        background-color: var(--container-background-color); 
+        align-items: center; 
+        padding: 0; 
+        /* Evita todo scroll no deseado */
+        overflow: hidden; 
+    }
+
+    /* Contenido de texto (izquierda) */
+    .ivonne-left-content {
+        width: 55%; 
+        padding: 80px 60px 80px 100px; 
+        background-color: var(--panel-background-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        height: 100%; 
+    }
+
+    .ivonne-title {
+        font-family: var(--title-font);
+        color: var(--title-color);
+        font-size: 5vw; 
+        font-weight: 400;
+        margin-top: 0;
+        margin-bottom: 40px;
+        line-height: 1.1;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .ivonne-paragraph {
+        font-family: var(--paragraph-font);
+        font-size: 1.3vw; 
+        line-height: 1.6;
+        margin-bottom: 20px;
+        text-align: justify; 
+    }
+
+    /* Contenedor de la imagen (derecha) */
+    .ivonne-right-image {
+        width: 45%; 
+        height: 100vh; 
+        overflow: hidden; 
+    }
+
+    .ivonne-image {
+        width: 100%;
+        height: 100%; 
+        /* AJUSTE: Asegura que la imagen cubra todo el espacio sin distorsionarse */
+        object-fit: cover; 
+        display: block; 
+        /* Posición por defecto */
+        object-position: center; 
+    }
+
+    /* --- MEDIA QUERIES (Responsividad) --- */
+
+    @media (max-width: 1024px) {
+        .ivonne-container {
+            flex-direction: column; 
+            /* Altura automática para permitir scroll en móvil */
+            height: auto; 
+            min-height: auto; 
+            padding: 30px 0;
+            overflow: visible; 
+        }
+
+        .ivonne-left-content {
+            width: 100%; 
+            padding: 50px 40px; 
+            text-align: center; 
+            height: auto; 
+            box-shadow: none; 
+        }
+
+        .ivonne-right-image {
+            width: 100%; 
+            /* Se establece una relación de aspecto (ej. 16:9) para que la altura sea fluida */
+            padding-bottom: 56.25%; /* Esto crea una altura que es el 56.25% del ancho (16:9) */
+            height: 0; /* Necesario para que padding-bottom funcione como aspect ratio */
+            position: relative; /* Necesario para la posición absoluta de la imagen */
+            margin-bottom: 30px;
+        }
+
+        .ivonne-image {
+            /* Ocupa el espacio definido por padding-bottom */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+            /* AJUSTE CRÍTICO: Mueve el enfoque de la imagen hacia arriba para que el rostro sea visible */
+            object-position: center top; 
+        }
+        
+        .ivonne-title {
+            font-size: 8vw; 
+            margin-bottom: 30px;
+        }
+
+        .ivonne-paragraph {
+            font-size: 16px; 
+            text-align: center; 
+        }
+    }
+
+    @media (max-width: 768px) {
+        .ivonne-left-content {
+            padding: 40px 25px; 
+        }
+        .ivonne-right-image {
+            /* Se puede cambiar la relación de aspecto para móvil a algo más cuadrado, ej. 4:3 (75%) */
+            padding-bottom: 75%; 
+        }
+    }
+
+    @media (max-width: 480px) {
+        .ivonne-left-content {
+            padding: 30px 15px;
+        }
+        .ivonne-right-image {
+            /* Proporción casi cuadrada */
+            padding-bottom: 85%; 
+            margin-bottom: 20px;
+        }
+    }
+</style>
