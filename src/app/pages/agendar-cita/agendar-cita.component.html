@@ -1,1 +1,79 @@
-<p>agendar-cita works!</p>
+<div class="form-container">
+  <h2>Agenda tu Cita</h2>
+
+  <!-- Enlazar el formulario Reactivo -->
+  <form [formGroup]="citaForm" (ngSubmit)="onSubmit()" class="cita-form">
+
+    <!-- 1. Nombre Completo -->
+    <div class="form-group">
+      <label for="nombreCompleto">Nombre Completo</label>
+      <input id="nombreCompleto" type="text" formControlName="nombreCompleto" placeholder="Tu nombre completo">
+      <div *ngIf="citaForm.get('nombreCompleto')?.invalid && (citaForm.get('nombreCompleto')?.dirty || citaForm.get('nombreCompleto')?.touched)" class="error-message">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <!-- 2. Número de Teléfono -->
+    <div class="form-group">
+      <label for="numeroTelefono">Número de Teléfono</label>
+      <input id="numeroTelefono" type="tel" formControlName="numeroTelefono" placeholder="Ej: 1234567891">
+      <div *ngIf="citaForm.get('numeroTelefono')?.invalid && (citaForm.get('numeroTelefono')?.dirty || citaForm.get('numeroTelefono')?.touched)" class="error-message">
+        Ingrese un número de teléfono válido.
+      </div>
+    </div>
+
+    <!-- 3. Seleccionar Tratamiento -->
+    <div class="form-group">
+      <label for="tratamiento">Selecciona un Tratamiento</label>
+      <select id="tratamiento" formControlName="tratamiento">
+        <option value="" disabled>-- Seleccione una opción --</option>
+        <option *ngFor="let tratamiento of tratamientos" [ngValue]="tratamiento">
+          {{ tratamiento }}
+        </option>
+      </select>
+      <div *ngIf="citaForm.get('tratamiento')?.invalid && (citaForm.get('tratamiento')?.dirty || citaForm.get('tratamiento')?.touched)" class="error-message">
+        Debe seleccionar un tratamiento.
+      </div>
+    </div>
+
+    <!-- 4. Seleccionar Fecha (Lunes a Sábado) -->
+    <div class="form-group">
+      <label for="fecha">Selecciona la Fecha</label>
+      <!-- min: Restringe a la fecha actual en adelante -->
+      <input 
+        id="fecha" 
+        type="date" 
+        formControlName="fecha"
+        [min]="getCurrentDate()"
+      >
+      <!-- Texto de ayuda para la restricción de días -->
+      <span class="help-text">Solo es posible agendar citas de Lunes a Sábado.</span>
+      
+      <!-- Mensajes de Error Mejorados -->
+      <div *ngIf="citaForm.get('fecha')?.invalid && (citaForm.get('fecha')?.dirty || citaForm.get('fecha')?.touched)" class="error-message">
+        <span *ngIf="citaForm.get('fecha')?.errors?.['required']">La fecha es obligatoria.</span>
+        <!-- Mensaje explícito para el Domingo -->
+        <span *ngIf="citaForm.get('fecha')?.errors?.['domingoNoPermitido']">❌ Lo sentimos, no agendamos citas en **Domingo**. Por favor, elige otro día.</span>
+      </div>
+    </div>
+
+    <!-- 5. Seleccionar Hora (9 AM a 5 PM) -->
+    <div class="form-group">
+      <label for="hora">Selecciona la Hora (9 AM - 6 PM)</label>
+      <select id="hora" formControlName="hora">
+        <option value="" disabled>-- Seleccione una hora --</option>
+        <option *ngFor="let hora of horasDisponibles" [ngValue]="hora">
+          {{ hora }}
+        </option>
+      </select>
+      <div *ngIf="citaForm.get('hora')?.invalid && (citaForm.get('hora')?.dirty || citaForm.get('hora')?.touched)" class="error-message">
+        La hora es obligatoria.
+      </div>
+    </div>
+
+    <!-- Botón de Envío -->
+    <button type="submit" [disabled]="citaForm.invalid">
+      ✅ Agendar Vía WhatsApp
+    </button>
+  </form>
+</div>
