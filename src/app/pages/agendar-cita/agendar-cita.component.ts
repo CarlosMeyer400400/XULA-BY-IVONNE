@@ -22,7 +22,7 @@ export class AgendarCitaComponent implements OnInit {
     'UÑAS'
   ];
   horasDisponibles: string[] = this.generarHoras();
-  whatsappNumber: string = '527713535455'; // Número de WhatsApp para contacto
+  whatsappNumber: string = '524432067922'; // Número de WhatsApp para contacto
 
   // Inyectar FormBuilder
   constructor(private fb: FormBuilder) {}

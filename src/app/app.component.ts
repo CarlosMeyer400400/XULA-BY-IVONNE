@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './header/header.component'; // ⬅️ 1. Importa la clase del componente
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from "./footer/footer.component"; // ⬅️ 1. Importa la clase del componente
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,9 @@ import { HeaderComponent } from './header/header.component'; // ⬅️ 1. Import
   imports: [
     RouterOutlet,
     HeaderComponent // ⬅️ 2. Añade el componente a los imports
-  ],
+    ,
+    FooterComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
