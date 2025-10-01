@@ -1,63 +1,124 @@
-/* Contenedor principal del header con el color de fondo */
+/* Estilos Base para Escritorio */
 .main-header {
-  background-color: #FDDFBB; /* Color de fondo solicitado */
+  background-color: #FDDFBB;
   width: 100%;
-  position: fixed; /* Mantiene el header visible al hacer scroll */
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera para distinguirlo */
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Contenido interno para centrar o controlar el ancho */
 .header-content {
   display: flex;
-  justify-content: space-between; /* Distribuye el logo a la izquierda y la navegación a la derecha */
+  justify-content: space-between;
   align-items: center;
-  padding: 10px 40px; /* Espaciado interno */
-  max-width: 1400px; /* O el ancho máximo que desees para el contenido */
-  margin: 0 auto; /* Centra el contenido */
+  padding: 10px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* Estilos del Logo */
 .header-logo {
-  height: 50px; /* Ajusta la altura de tu logo */
+  height: 50px; /* Ajusta la altura */
   object-fit: contain;
 }
 
-/* Estilos de la Navegación */
 .main-nav {
-  display: flex;
-  gap: 20px; /* Espacio entre los botones de navegación */
+  display: flex; /* Mantiene la navegación en línea en escritorio */
+  gap: 20px;
+  align-items: center;
 }
 
-/* Estilos de los botones del menú */
 .menu-button {
-  text-decoration: none; /* Quitar el subrayado predeterminado del link */
-  color: #333; /* Color de texto oscuro (ajusta según tu diseño) */
+  text-decoration: none;
+  color: #333;
   font-weight: 500;
   padding: 8px 12px;
   transition: color 0.3s, background-color 0.3s;
   text-transform: uppercase;
   font-size: 14px;
+  white-space: nowrap; /* Evita que los botones se rompan en dos líneas */
 }
 
-.menu-button:hover {
-  color: #000;
-  /* Puedes agregar un efecto de fondo o subrayado al pasar el mouse */
-  border-bottom: 2px solid #333;
+/* Ocultar el botón de hamburguesa por defecto en escritorio */
+.menu-toggle {
+  display: none;
 }
 
-/* Estilo especial para el botón "AGENDAR UNA CITA" (opcional, para destacarlo) */
+/* Estilo del botón de cita */
 .primary-button {
-  background-color: #FFA500; /* Un color que destaque, por ejemplo */
+  background-color: #FFA500;
   color: white;
   border-radius: 4px;
   padding: 8px 15px;
   font-weight: bold;
 }
 
-.primary-button:hover {
-  background-color: #FF8C00;
-  border-bottom: none;
+/* ------------------------------------------- */
+/* Media Query para Dispositivos Móviles (menos de 768px) */
+/* ------------------------------------------- */
+@media (max-width: 768px) {
+  
+  .header-content {
+    padding: 10px 20px; /* Menos padding en móvil */
+  }
+
+  /* 1. Mostrar el botón de hamburguesa */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10; /* Asegurar que esté por encima del menú */
+  }
+
+  .menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    transition: all 0.3s linear;
+    transform-origin: 1px;
+  }
+  
+  /* 2. Ocultar y reorganizar la navegación */
+  .main-nav {
+    /* Posicionamiento para el menú desplegable */
+    position: absolute;
+    top: 100%; /* Empieza justo debajo del header */
+    left: 0;
+    width: 100%;
+    background-color: #FDDFBB; /* Mismo color de fondo */
+    flex-direction: column; /* Apilar los enlaces verticalmente */
+    align-items: stretch; /* Estirar los enlaces a todo el ancho */
+    gap: 0; /* Eliminar el espacio entre enlaces */
+    
+    /* Estado inicial: OCULTO */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Estado ACTIVO: MOSTRAR el menú */
+  .main-nav.is-open {
+    max-height: 500px; /* Suficiente alto para mostrar todos los enlaces */
+  }
+
+  /* Estilo para los botones en el menú móvil */
+  .menu-button {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Separador visual */
+    text-align: left;
+    display: block; /* Ocupa todo el ancho */
+  }
+  
+  .primary-button {
+      margin: 10px 20px 20px; /* Espacio extra para el botón principal */
+      text-align: center;
+  }
 }

@@ -1,0 +1,9 @@
+/* Ajusta el padding-top para dejar espacio para el header. 
+   Usa un valor un poco mayor a la altura de tu header (ej. 70px) */
+body { 
+    padding-top: 70px; 
+} 
+/* Si estás usando 'main' en app.component.html */
+main {
+    padding-top: 70px; 
+}

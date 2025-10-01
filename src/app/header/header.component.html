@@ -6,13 +6,19 @@
       </a>
     </div>
 
-    <nav class="main-nav">
-      <a class="menu-button" [routerLink]="['/pages/acerca']">ACERCA DE NOSOTROS</a>
-      <a class="menu-button" [routerLink]="['/trabajos']">NUESTROS TRABAJOS</a>
-      <a class="menu-button" [routerLink]="['/sucursal']">SUCURSAL</a>
-      <a class="menu-button" [routerLink]="['/ivonne-prado']">IVONNE PRADO</a>
-      <a class="menu-button" [routerLink]="['/redes-sociales']">REDES SOCIALES</a>
-      <a class="menu-button primary-button" [routerLink]="['/agendar-cita']">AGENDAR UNA CITA</a>
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav class="main-nav" [class.is-open]="isMenuOpen">
+      <a class="menu-button" [routerLink]="['/pages/acerca']" (click)="closeMenu()">ACERCA DE NOSOTROS</a>
+      <a class="menu-button" [routerLink]="['/trabajos']" (click)="closeMenu()">NUESTROS TRABAJOS</a>
+      <a class="menu-button" [routerLink]="['/sucursal']" (click)="closeMenu()">SUCURSAL</a>
+      <a class="menu-button" [routerLink]="['/ivonne-prado']" (click)="closeMenu()">IVONNE PRADO</a>
+      <a class="menu-button" [routerLink]="['/redes-sociales']" (click)="closeMenu()">REDES SOCIALES</a>
+      <a class="menu-button primary-button" [routerLink]="['/agendar-cita']" (click)="closeMenu()">AGENDAR UNA CITA</a>
     </nav>
   </div>
 </header>
