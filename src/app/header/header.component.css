@@ -1,0 +1,63 @@
+/* Contenedor principal del header con el color de fondo */
+.main-header {
+  background-color: #FDDFBB; /* Color de fondo solicitado */
+  width: 100%;
+  position: fixed; /* Mantiene el header visible al hacer scroll */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera para distinguirlo */
+}
+
+/* Contenido interno para centrar o controlar el ancho */
+.header-content {
+  display: flex;
+  justify-content: space-between; /* Distribuye el logo a la izquierda y la navegación a la derecha */
+  align-items: center;
+  padding: 10px 40px; /* Espaciado interno */
+  max-width: 1400px; /* O el ancho máximo que desees para el contenido */
+  margin: 0 auto; /* Centra el contenido */
+}
+
+/* Estilos del Logo */
+.header-logo {
+  height: 50px; /* Ajusta la altura de tu logo */
+  object-fit: contain;
+}
+
+/* Estilos de la Navegación */
+.main-nav {
+  display: flex;
+  gap: 20px; /* Espacio entre los botones de navegación */
+}
+
+/* Estilos de los botones del menú */
+.menu-button {
+  text-decoration: none; /* Quitar el subrayado predeterminado del link */
+  color: #333; /* Color de texto oscuro (ajusta según tu diseño) */
+  font-weight: 500;
+  padding: 8px 12px;
+  transition: color 0.3s, background-color 0.3s;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.menu-button:hover {
+  color: #000;
+  /* Puedes agregar un efecto de fondo o subrayado al pasar el mouse */
+  border-bottom: 2px solid #333;
+}
+
+/* Estilo especial para el botón "AGENDAR UNA CITA" (opcional, para destacarlo) */
+.primary-button {
+  background-color: #FFA500; /* Un color que destaque, por ejemplo */
+  color: white;
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-weight: bold;
+}
+
+.primary-button:hover {
+  background-color: #FF8C00;
+  border-bottom: none;
+}
