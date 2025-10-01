@@ -1,1 +1,208 @@
-<p>redes-sociales works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redes Sociales - Xula by Ivonne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* Variables de color basadas en el boceto */
+        :root {
+            --brown-bg: #6D4C42; /* Fondo principal marrón oscuro */
+            --light-text: #D1B499; /* Color del título (sepia/dorado claro) */
+            --dark-card-bg: #1E1E1E; /* Fondo de las tarjetas de redes sociales (casi negro) */
+            --white-bg: #FFFFFF; /* Fondo para la imagen de productos */
+        }
+
+        /* ------------------------------------- */
+        /* ESTILOS GENERALES Y LAYOUT BASE */
+        /* ------------------------------------- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--brown-bg); 
+            color: white;
+            /* Control de scroll para escritorio */
+            height: 100vh; 
+            overflow: hidden; /* Evita el scroll en desktop */
+        }
+        
+        /* Aseguramos que el color de fondo específico del body se respete */
+        body[style*="82644E"] {
+            background-color: #82644E;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%; /* Toma la altura completa de la pantalla */
+        }
+
+        /* ------------------------------------- */
+        /* SECCIÓN IZQUIERDA (IMAGEN A PANTALLA COMPLETA) */
+        /* ------------------------------------- */
+        .left-section {
+            width: 40%; 
+            background-color: var(--white-bg); /* Fondo de respaldo */
+            background-image: url('/assets/redes/redes.png');
+            background-size: cover; /* Asegura que la imagen cubra todo el espacio */
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 0;
+        }
+
+        .left-section img {
+            display: none; 
+        }
+
+        /* ------------------------------------- */
+        /* SECCIÓN DERECHA (CONTENIDO) */
+        /* ------------------------------------- */
+        .right-section {
+            width: 60%;
+            padding: 40px;
+            box-sizing: border-box; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .title {
+            font-family: 'Times New Roman', serif;
+            font-size: 3.5em;
+            font-weight: normal;
+            color: var(--light-text);
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* Se aumenta el max-width para hacer las imágenes más grandes en laptop */
+        .social-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 700px; /* <--- AUMENTADO para laptops/escritorio */
+        }
+
+        /* Fila Superior (Instagram y Apertura) */
+        .top-row {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .social-card, .apertura-section {
+            background-color: var(--dark-card-bg); 
+            border-radius: 5px; 
+            padding: 5px; /* <--- REDUCIDO para dar más espacio a la imagen */
+            box-sizing: border-box; 
+            display: block; 
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        /* Estilo para los enlaces de las tarjetas */
+        .social-link {
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .social-card img, .apertura-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .instagram-wrapper { flex: 3; }
+        .apertura-wrapper { flex: 2; }
+        .facebook-row { width: 100%; }
+
+
+        /* ------------------------------------- */
+        /* RESPONSIVENESS (MÓVIL) */
+        /* ------------------------------------- */
+        @media (max-width: 768px) {
+            body, html {
+                height: auto;
+                overflow-y: auto; /* Habilita el scroll en móvil */
+            }
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            .left-section {
+                width: 100%;
+                height: 300px; 
+                order: 2; 
+            }
+            .right-section {
+                width: 100%;
+                padding: 20px 10px;
+                order: 1; 
+            }
+            .social-grid {
+                 max-width: 100%; /* Asegura que en móvil siga ajustándose al 100% del ancho */
+            }
+            .top-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .social-card, .apertura-section {
+                padding: 15px; /* Aumentamos el padding de vuelta en móvil para mejor toque */
+            }
+
+            .instagram-wrapper, .apertura-wrapper {
+                flex: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body style="background-color: #82644E;">
+    <div class="container">
+        <div class="left-section">
+            <img src="/assets/redes/redes.png" alt="Productos de maquillaje Xula by Ivonne">
+        </div>
+
+        <div class="right-section">
+            <h1 class="title">REDES SOCIALES</h1>
+
+            <div class="social-grid">
+                
+                <div class="top-row">
+                    
+                    <div class="instagram-wrapper">
+                        <a href="https://www.instagram.com/_xulaivonneprado?igsh=enljNG4wa3h3YzVr" target="_blank" class="social-link">
+                            <div class="social-card">
+                                <img src="/assets/redes/instagram.png" alt="Perfil de Instagram - Xula by Ivonne Prado">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="apertura-wrapper">
+                         <a href="https://wa.me/5214432067922" target="_blank" class="social-link">
+                            <div class="apertura-section" style="background-color: var(--dark-card-bg);">
+                                <img src="/assets/redes/whatsapp.png" alt="Gran Apertura y Contacto WhatsApp">
+                            </div>
+                         </a>
+                    </div>
+                </div>
+
+                <div class="facebook-row">
+                    <a href="https://www.facebook.com/share/1GzKZyWpgR/" target="_blank" class="social-link">
+                        <div class="social-card">
+                            <img src="/assets/redes/facebook.png" alt="Perfil de Facebook - Xula by Ivonne">
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
