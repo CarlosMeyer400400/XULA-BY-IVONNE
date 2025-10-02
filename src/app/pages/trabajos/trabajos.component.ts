@@ -25,9 +25,19 @@ export class TrabajosComponent {
   
   // ... (El resto de tu lógica de trabajosData y funciones se mantiene igual)
 
-  trabajoActivoId: string = 'microblading';
+  trabajoActivoId: string = 'uno';
 
   trabajosData: Trabajo[] = [
+     {
+      id: 'uno',
+      menuLabel: '',
+      title: '',
+      description: '',
+      duration: '',
+      imagePath: 'trabajo.png', 
+      bgColor: '#ffffff',
+      cuidado: ''
+    },
     {
       id: 'microblading',
       menuLabel: 'MICROBLADING',
