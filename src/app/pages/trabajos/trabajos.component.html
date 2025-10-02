@@ -1,7 +1,7 @@
 <div class="trabajos-container">
     
     <div class="trabajos-left-menu">
-        <h1 class="trabajos-title">NUESTROS TRABAJOS</h1>
+        <h1>NUESTROS TRABAJOS</h1>
 
         <div class="menu-trabajos-container">
             
@@ -23,24 +23,25 @@
           *ngIf="getActiveTrabajo() as trabajo" 
           class="trabajos-right-content active-content" 
           
-          [style.background-color]="trabajo.bgColor"> 
-            
+          [style.background-color]="trabajo.bgColor" 
+            id="trabajo-content">
             <div class="trabajo-info-box">
-                <h2 class="content-title">{{ trabajo.title }}</h2>
+                <h1 style="text-align: center;">{{ trabajo.title }}</h1>
                 
                 <p class="content-description">
                     {{ trabajo.description }}
                 </p>
 
                 <div class="content-duration">
-                    <p>
                         <span>{{ trabajo.duration }}</span>
-                        <br>
-                        (dependiendo del tipo de piel y cuidados posteriores)
-                    </p>
                 </div>
+                    <p>
+                     <span>{{ trabajo.cuidado }}</span>
+                    </p>
+                   
+              
+
                 
-                <span class="nav-arrow">&gt;</span>
             </div>
 
             <div class="trabajo-image-box">

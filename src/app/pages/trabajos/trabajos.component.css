@@ -204,7 +204,5 @@ body, html {
     .trabajo-info-box { 
         order: 1; 
     }
-    .nav-arrow { 
-        display: none; 
-    }
+    
 }

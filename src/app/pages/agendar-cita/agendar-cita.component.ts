@@ -15,12 +15,21 @@ export class AgendarCitaComponent implements OnInit {
   // Variables
   citaForm!: FormGroup;
   tratamientos: string[] = [
-    'MICROBLADING-SHADING',
-    'MICROPIGMENTACION LABIOS',
-    'MICROPIGMENTACION OJOS',
-    'PESTAÑAS',
-    'UÑAS'
-  ];
+    'MICROBLADING',
+    'MICROSHADING',
+    'LATIN BROWS',
+    'POWDER BROWS',
+    'NANOBLADING',
+    'FULL LIPS',
+    'BABY LIPS',
+    'DELINEADO DE OJOS',
+    'APLICACION DE UÑAS',
+    'PESTAÑAS CLASICAS',
+    'PESTAÑAS HIBRIDAS',
+    'LIFFTING DE PESTAÑAS',
+    'PESTAÑAS EFECTOS'
+];
+
   horasDisponibles: string[] = this.generarHoras();
   whatsappNumber: string = '524432067922'; // Número de WhatsApp para contacto
 
