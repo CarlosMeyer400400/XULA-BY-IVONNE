@@ -10,7 +10,6 @@
 body, html {
     margin: 0;
     padding: 0;
-    /* Usa las fuentes que se ven en el diseño */
     font-family: 'Montserrat', sans-serif; 
     width: 100%;
     overflow-x: hidden; 
@@ -23,7 +22,7 @@ body, html {
 /* Contenedor principal de dos columnas */
 .trabajos-container {
     display: flex;
-    min-height: 100vh; /* Para que la columna derecha cubra toda la altura */
+    min-height: 100vh; 
     width: 100%;
 }
 
@@ -37,12 +36,13 @@ body, html {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    flex-shrink: 0; /* Evita que el menú se reduzca */
+    flex-shrink: 0; 
 }
 
-.trabajos-title {
-    font-family: 'Playfair Display', serif; /* Tipo de fuente para títulos grandes */
-    font-size: 2.5vw; 
+/* Nota: La clase .trabajos-title no estaba en tu HTML pero la mantengo si la añades después */
+.trabajos-title, .trabajos-left-menu h1 {
+    font-family: 'Playfair Display', serif; 
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem); /* Uso clamp para responsividad del título */
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 50px;
@@ -88,7 +88,7 @@ body, html {
 
 /* --- CONTENIDO DERECHO (70% de ancho) --- */
 .content-container {
-    flex: 1; /* Ocupa el espacio restante (70%) */
+    flex: 1; 
     height: 100vh;
     min-width: 0;
     overflow: hidden;
@@ -102,33 +102,43 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    display: none; /* Oculto por defecto */
+    display: none; 
     align-items: center;
-    
-    /* El color de fondo se aplica con [style.background-color]="trabajo.bgColor" en el HTML */
+    /* Por defecto, usa la disposición de escritorio (row) */
+    flex-direction: row; 
 }
 
 /* Solo muestra el contenido activo (controlado por *ngIf) */
 .trabajos-right-content.active-content {
-    display: flex; /* Vuelve a mostrarlo como flex para la estructura de 2 columnas */
+    display: flex;
 }
 
-/* Contenedor de la información (Texto, 40% del espacio) */
-.trabajo-info-box {
+/* ---------------------------------------------------- */
+/* --- ESTILOS DE ESCRITORIO (Reglas por defecto) --- */
+/* ---------------------------------------------------- */
+
+/* ESTADO NORMAL (Split 40% Texto / 60% Imagen) */
+.trabajos-right-content:not(.bienvenida-mode) .trabajo-info-box {
     width: 40%; 
     padding: 80px 70px 80px 50px; 
-    color: var(--dark-text);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    background-color: transparent; 
+    display: flex; /* Asegura que se muestre en el estado normal */
+}
+.trabajos-right-content:not(.bienvenida-mode) .trabajo-image-box {
+    width: 60%; 
 }
 
-/* Contenedor de la imagen (60% del espacio) */
+/* ESTADO BIENVENIDA (Imagen 100%) */
+.trabajos-right-content.bienvenida-mode .trabajo-info-box {
+    display: none; /* OCULTAR texto de bienvenida */
+}
+
+.trabajos-right-content.bienvenida-mode .trabajo-image-box {
+    width: 100%; /* La imagen ocupa todo el ancho disponible */
+}
+
+/* Contenedor de la imagen */
 .trabajo-image-box {
-    width: 60%; 
-    height: 100%; 
+    height: 100%; /* 100% de la altura de .trabajos-right-content */
     overflow: hidden;
     flex-grow: 1; 
     flex-shrink: 0;
@@ -137,14 +147,23 @@ body, html {
 .trabajo-image-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    object-fit: cover; 
     display: block;
 }
 
-/* Estilos de los elementos de texto */
-.content-title {
+/* Estilos de los elementos de texto (Se mantienen) */
+.trabajo-info-box {
+    color: var(--dark-text);
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    background-color: transparent; 
+}
+
+/* Note: Cambié .content-title por h1 ya que es lo que usas en el HTML */
+.trabajo-info-box h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 4vw, 5rem); 
+    font-size: clamp(2rem, 3.5vw, 4rem); /* Ajuste el tamaño para que sea responsivo en escritorio */
     font-weight: 400;
     margin-bottom: 20px;
     word-break: break-word; 
@@ -169,6 +188,7 @@ body, html {
     color: inherit;
 }
 
+/* El nav-arrow no tiene uso actual en tu código pero se mantiene su estilo */
 .nav-arrow {
     position: absolute;
     bottom: 30px;
@@ -178,67 +198,46 @@ body, html {
     cursor: pointer;
 }
 
+/* ---------------------------------------------------- */
 /* --- MEDIA QUERIES (Responsividad para móviles) --- */
+/* ---------------------------------------------------- */
 @media (max-width: 768px) {
+    /* Estructura general */
     .trabajos-container { 
-        flex-direction: column; 
+        flex-direction: column; /* Apila menú sobre contenido */
     }
     .trabajos-left-menu, .content-container { 
         width: 100%; 
-        height: auto; 
+        height: auto; /* Permite que el contenido crezca en vertical */
     }
+
+    /* Contenedor de contenido derecho */
     .trabajos-right-content { 
         position: static; 
         height: auto;
-        flex-direction: column; /* Apila el texto y la imagen verticalmente */
+        flex-direction: column; /* Apila texto sobre imagen en móvil */
     }
-    .trabajo-info-box, .trabajo-image-box { 
-        width: 100%;
+
+    /* ESTADO NORMAL (Split) en móvil */
+    .trabajos-right-content:not(.bienvenida-mode) .trabajo-info-box { 
+        width: 100%; /* Texto ocupa todo el ancho */
         padding: 40px 20px;
+        order: 1; /* El texto va primero */
+        display: flex;
     }
-    .trabajo-image-box { 
-        height: 300px; 
-        order: 2; 
+    .trabajos-right-content:not(.bienvenida-mode) .trabajo-image-box { 
+        width: 100%; /* Imagen ocupa todo el ancho */
+        height: 300px; /* Altura fija para la imagen */
+        order: 2; /* La imagen va después del texto */
         padding: 0;
     }
-    .trabajo-info-box { 
-        order: 1; 
+
+    /* ESTADO BIENVENIDA en móvil */
+    .trabajos-right-content.bienvenida-mode .trabajo-image-box {
+        width: 100%; 
+        height: 60vh; /* Se ve más grande que la imagen normal, pero no ocupa todo el alto */
+        padding: 0;
     }
-    /* trabajos.component.css (Modificado) */
 
-/* ... (Los estilos base y del menú se mantienen igual) ... */
-
-/* --- CONTENIDO DERECHO (70% de ancho) --- */
-
-/* ... (content-container y trabajos-right-content se mantienen igual) ... */
-
-/* Estilos PREDETERMINADOS (aplican cuando NO es bienvenida) */
-.trabajos-right-content:not(.bienvenida-mode) .trabajo-info-box {
-    width: 40%; 
-    padding: 80px 70px 80px 50px; 
-    /* Asegura que el info-box se muestre en modo normal (split) */
-    display: flex; 
-}
-.trabajos-right-content:not(.bienvenida-mode) .trabajo-image-box {
-    width: 60%; 
-}
-
-/* --- ESTILO DE BIENVENIDA (MODO IMAGEN COMPLETA) --- */
-.trabajos-right-content.bienvenida-mode {
-    /* Mantiene el display: flex; que ya tenías */
-    justify-content: flex-start; /* Opcional: para limpiar */
-}
-
-/* OCULTAR CAJA DE INFO en modo bienvenida */
-.trabajos-right-content.bienvenida-mode .trabajo-info-box {
-    display: none;
-}
-
-/* IMAGEN A ANCHO COMPLETO en modo bienvenida */
-.trabajos-right-content.bienvenida-mode .trabajo-image-box {
-    width: 100%; /* La imagen ocupa todo el ancho disponible */
-    /* El resto de las propiedades de la imagen (height, object-fit) se mantienen */
-}
-
-/* ... (El resto de estilos se mantiene igual) ... */
+    /* El .trabajo-info-box se oculta automáticamente por la regla de bienvenida */
 }
