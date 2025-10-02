@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redes Sociales - Xula by Ivonne</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Variables de color basadas en el boceto */
+        /* Variables de color basadas en la imagen: Marrones, blanco y tonos sutiles */
         :root {
-            --brown-bg: #6D4C42; /* Fondo principal marrón oscuro */
-            --light-text: #D1B499; /* Color del título (sepia/dorado claro) */
-            --dark-card-bg: #1E1E1E; /* Fondo de las tarjetas de redes sociales (casi negro) */
-            --white-bg: #FFFFFF; /* Fondo para la imagen de productos */
+            /* Color de fondo principal (Marrón Oscuro de la derecha) */
+            --main-bg: #82644E; 
+            /* Color de fondo de las tarjetas (Blanco) */
+            --card-bg: #FFFFFF;
+            /* Color de texto/elementos internos de las tarjetas (Marrón Oscuro) */
+            --dark-text: #4C3C34; 
+            /* Color del título "REDES SOCIALES" (Similar al texto de las tarjetas) */
+            --title-color: #4C3C34;
+            /* Color del fondo de la sección de la izquierda (Blanco) */
+            --left-bg: #F5F5F5; 
+            /* Color sutil para los detalles de las tarjetas (Gris claro/Marrón muy claro) */
+            --detail-color: #A09080;
         }
 
         /* ------------------------------------- */
@@ -20,40 +29,41 @@
         body, html {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: var(--brown-bg); 
-            color: white;
-            /* Control de scroll para escritorio */
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--main-bg); 
+            color: var(--dark-text); /* El color base del texto será oscuro */
             height: 100vh; 
             overflow: hidden; /* Evita el scroll en desktop */
         }
         
-        /* Aseguramos que el color de fondo específico del body se respete */
-        body[style*="82644E"] {
-            background-color: #82644E;
-        }
-
         .container {
             display: flex;
             width: 100%;
-            height: 100%; /* Toma la altura completa de la pantalla */
+            height: 100%; 
         }
 
         /* ------------------------------------- */
-        /* SECCIÓN IZQUIERDA (IMAGEN A PANTALLA COMPLETA) */
+        /* SECCIÓN IZQUIERDA (IMAGEN) */
         /* ------------------------------------- */
         .left-section {
             width: 40%; 
-            background-color: var(--white-bg); /* Fondo de respaldo */
-            background-image: url('/assets/redes/redes.png');
-            background-size: cover; /* Asegura que la imagen cubra todo el espacio */
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 0;
+            background-color: var(--left-bg); 
+            /* La imagen se establece directamente con un `div` para respetar el área de recorte */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Oculta el desbordamiento si la imagen es demasiado grande */
         }
 
-        .left-section img {
-            display: none; 
+        /* Aplica la imagen de fondo/cubierta a esta sección como en el diseño original */
+        .product-image {
+            width: 100%;
+            height: 100%;
+            background-image: url('/assets/redes/redes.png');
+            background-size: cover; /* Cubre todo el contenedor */
+            background-position: center;
+            background-repeat: no-repeat;
+            /* El boceto tiene un poco de blanco a la izquierda, la imagen es solo decorativa */
         }
 
         /* ------------------------------------- */
@@ -67,61 +77,122 @@
             flex-direction: column;
             align-items: center;
             gap: 20px;
+            background-color: var(--main-bg);
+            padding-top: 40px; /* Espacio superior para el título */
         }
 
         .title {
-            font-family: 'Times New Roman', serif;
+            font-family: 'Playfair Display', serif; /* Fuente más elegante para el título */
             font-size: 3.5em;
-            font-weight: normal;
-            color: var(--light-text);
-            margin-bottom: 20px;
+            font-weight: 400; /* Regular */
+            color: var(--card-bg); /* Blanco como en la imagen */
+            margin-bottom: 0px;
             text-align: center;
             line-height: 1;
+            letter-spacing: 0.1em; /* Añade un poco de espacio para imitar el estilo */
         }
 
-        /* Se aumenta el max-width para hacer las imágenes más grandes en laptop */
         .social-grid {
             display: flex;
             flex-direction: column;
             gap: 20px;
             width: 100%;
-            max-width: 700px; /* <--- AUMENTADO para laptops/escritorio */
+            max-width: 550px; /* Ancho máximo para las tarjetas */
         }
 
-        /* Fila Superior (Instagram y Apertura) */
-        .top-row {
-            display: flex;
-            gap: 20px;
-            width: 100%;
-        }
-
-        .social-card, .apertura-section {
-            background-color: var(--dark-card-bg); 
-            border-radius: 5px; 
-            padding: 5px; /* <--- REDUCIDO para dar más espacio a la imagen */
+        .social-card {
+            background-color: var(--card-bg); 
+            border-radius: 2px; /* Bordes sutiles */
+            padding: 10px 15px;
             box-sizing: border-box; 
-            display: block; 
+            display: flex; /* Para alinear el contenido */
+            align-items: center;
+            gap: 15px;
             text-decoration: none; 
-            color: inherit; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
         }
 
-        /* Estilo para los enlaces de las tarjetas */
-        .social-link {
-            text-decoration: none;
-            display: block;
-            color: inherit;
+        /* Estilos específicos para la tarjeta con imagen de perfil (IVONNE) */
+        .card-ivonne {
+            display: flex;
+            align-items: center;
         }
 
-        .social-card img, .apertura-section img {
+        .profile-pic-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 3px; /* Esquina ligeramente redondeada */
+            overflow: hidden;
+            flex-shrink: 0; /* Evita que la imagen se achique */
+        }
+
+        .profile-pic-container img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .instagram-wrapper { flex: 3; }
-        .apertura-wrapper { flex: 2; }
-        .facebook-row { width: 100%; }
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            margin-left: 15px;
+        }
 
+        .card-content .name {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .card-content .description {
+            font-size: 0.9em;
+            color: var(--dark-text);
+            margin: 0;
+            margin-top: 2px;
+        }
+
+        .card-content .link-info {
+            font-size: 0.8em;
+            color: var(--detail-color);
+            margin: 0;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Iconos de las redes sociales dentro de las tarjetas */
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        /* Estilos específicos para la tarjeta de XULA | BY IVONNE (Logo/Nombre) */
+        .card-xula-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            flex-shrink: 0; 
+            margin-right: 15px;
+            /* Simulación del fondo negro/marrón del logo XULA */
+            background-color: #38302A; 
+            padding: 5px; /* Pequeño padding alrededor del logo */
+            box-sizing: border-box;
+        }
+        
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
 
         /* ------------------------------------- */
         /* RESPONSIVENESS (MÓVIL) */
@@ -129,7 +200,7 @@
         @media (max-width: 768px) {
             body, html {
                 height: auto;
-                overflow-y: auto; /* Habilita el scroll en móvil */
+                overflow-y: auto; 
             }
             .container {
                 flex-direction: column;
@@ -137,36 +208,30 @@
             }
             .left-section {
                 width: 100%;
-                height: 300px; 
-                order: 2; 
+                height: 300px; /* Altura fija para la imagen en móvil */
+                order: 2; /* Mueve la imagen debajo del contenido */
             }
             .right-section {
                 width: 100%;
-                padding: 20px 10px;
+                padding: 30px 20px;
                 order: 1; 
+                padding-top: 50px; /* Ajuste de espacio */
             }
             .social-grid {
-                 max-width: 100%; /* Asegura que en móvil siga ajustándose al 100% del ancho */
-            }
-            .top-row {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .social-card, .apertura-section {
-                padding: 15px; /* Aumentamos el padding de vuelta en móvil para mejor toque */
+                max-width: 100%;
             }
 
-            .instagram-wrapper, .apertura-wrapper {
-                flex: none;
-                width: 100%;
+            .title {
+                font-size: 2.5em;
             }
         }
     </style>
 </head>
-<body style="background-color: #82644E;">
+<body>
     <div class="container">
         <div class="left-section">
-            <img src="/assets/redes/redes.png" alt="Productos de maquillaje Xula by Ivonne">
+            <div class="product-image" role="img" aria-label="Productos de maquillaje Xula by Ivonne, sombras y bases de tonos tierra">
+                </div>
         </div>
 
         <div class="right-section">
@@ -174,32 +239,27 @@
 
             <div class="social-grid">
                 
-                <div class="top-row">
-                    
-                    <div class="instagram-wrapper">
-                        <a href="https://www.instagram.com/_xulaivonneprado?igsh=enljNG4wa3h3YzVr" target="_blank" class="social-link">
-                            <div class="social-card">
-                                <img src="/assets/redes/instagram.png" alt="Perfil de Instagram - Xula by Ivonne Prado">
-                            </div>
-                        </a>
+                <a href="https://wa.me/5214432067922" target="_blank" class="social-card card-ivonne">
+                    <div class="logo-container">
+                        <img src="/assets/redes/whatsapp.png" alt="Foto de perfil de Ivonne Prado">
                     </div>
                     
-                    <div class="apertura-wrapper">
-                         <a href="https://wa.me/5214432067922" target="_blank" class="social-link">
-                            <div class="apertura-section" style="background-color: var(--dark-card-bg);">
-                                <img src="/assets/redes/whatsapp.png" alt="Gran Apertura y Contacto WhatsApp">
-                            </div>
-                         </a>
+                </a>
+                
+                <a href="https://www.instagram.com/_xulaivonneprado?igsh=enljNG4wa3h3YzVr" target="_blank" class="social-card card-xula-logo">
+                    <div class="logo-container">
+                        <img src="/assets/redes/instagram.png" alt="Logo de Xula by Ivonne">
                     </div>
-                </div>
+                   
+                </a>
 
-                <div class="facebook-row">
-                    <a href="https://www.facebook.com/share/1GzKZyWpgR/" target="_blank" class="social-link">
-                        <div class="social-card">
-                            <img src="/assets/redes/facebook.png" alt="Perfil de Facebook - Xula by Ivonne">
-                        </div>
-                    </a>
-                </div>
+                <a href="https://www.facebook.com/share/1GzKZyWpgR/" target="_blank" class="social-card">
+                    <div class="logo-container">
+                        
+                            <img src="/assets/redes/facebook.png" alt="Facebook Icon" class="social-icon">
+                        
+                    </div>
+                </a>
 
             </div>
         </div>

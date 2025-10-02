@@ -1,178 +1,53 @@
 <div class="trabajos-container">
     
-    <div class="trabajos-left-menu" style="background-color: #aca19b;">
-        <h1 class="trabajos-title" style="color: white;">NUESTROS TRABAJOS</h1>
+    <div class="trabajos-left-menu">
+        <h1 class="trabajos-title">NUESTROS TRABAJOS</h1>
 
         <div class="menu-trabajos-container">
-            <a class="trabajo-button" style="background-color: #DFDBD8;">MICROBLADING-SHADING</a>
-            <a class="trabajo-button" style="background-color: #DFDBD8;">MICROPIGMENTACION LABIOS</a>
-            <a class="trabajo-button" style="background-color: #DFDBD8;">MICROPIGMENTACION OJOS</a>
-            <a class="trabajo-button" style="background-color: #DFDBD8;">PESTAÑAS</a>
-            <a class="trabajo-button" style="background-color: #DFDBD8;">UÑAS</a>
+            
+            <button 
+                *ngFor="let trabajo of trabajosData"
+                class="trabajo-button" 
+                
+                [ngClass]="{'active-menu': trabajo.id === trabajoActivoId}" 
+                
+                (click)="cambiarTrabajo(trabajo.id)">
+                {{ trabajo.menuLabel }}
+            </button>
         </div>
     </div>
 
-    <div class="trabajos-right-image">
-        <img src="/assets/trabajo/trabajo.png" alt="Mujer en tratamiento de belleza" class="trabajos-image">
+    <div class="content-container">
+
+        <div 
+          *ngIf="getActiveTrabajo() as trabajo" 
+          class="trabajos-right-content active-content" 
+          
+          [style.background-color]="trabajo.bgColor"> 
+            
+            <div class="trabajo-info-box">
+                <h2 class="content-title">{{ trabajo.title }}</h2>
+                
+                <p class="content-description">
+                    {{ trabajo.description }}
+                </p>
+
+                <div class="content-duration">
+                    <p>
+                        <span>{{ trabajo.duration }}</span>
+                        <br>
+                        (dependiendo del tipo de piel y cuidados posteriores)
+                    </p>
+                </div>
+                
+                <span class="nav-arrow">&gt;</span>
+            </div>
+
+            <div class="trabajo-image-box">
+                <img [src]="'/assets/trabajo/' + trabajo.imagePath" [alt]="'Resultado de ' + trabajo.title">
+            </div>
+        </div>
+        
     </div>
     
 </div>
-
-<style>
-    /* Variables que replican el diseño de la imagen subida (Colores y Estilos) */
-    :root {
-        /* Color principal: Marrón/Gris oscuro (Para texto y fondo hover de botones) */
-        --main-color: #EDE8E6; 
-        /* NUEVO COLOR DE FONDO SOLICITADO */
-        --background-color: #EDE8E6; 
-        /* Color del botón: Marrón muy claro/Hueso exacto de la imagen */
-        --button-color: #EDE8E6; 
-        /* Fuente sugerida para el estilo elegante del título */
-        --title-font: 'Playfair Display', serif; 
-        /* Fuente de los botones */
-        --button-font: 'Montserrat', sans-serif; 
-    }
-
-    /* Aplicar box-sizing */
-    .trabajos-container *, .trabajos-container *::before, .trabajos-container *::after {
-        box-sizing: border-box;
-    }
-
-    /* --- ESTILOS BASE (Desktop) --- */
-    .trabajos-container {
-        display: flex;
-        min-height: 100vh; 
-        width: 100%;
-        overflow-x: hidden; 
-    }
-
-    /* Sección de Menú (Izquierda) - APLICACIÓN DEL NUEVO COLOR */
-    .trabajos-left-menu {
-        width: 50%; 
-        padding: 80px 40px;
-        /* Color de fondo actualizado */
-        background-color: var(--background-color); 
-        color: var(--main-color);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-    }
-
-    .trabajos-title {
-        font-family: var(--title-font);
-        font-size: 4.5vw; 
-        font-weight: 400;
-        margin-top: 0;
-        margin-bottom: 70px;
-        line-height: 1;
-        letter-spacing: 2px;
-    }
-    
-    .menu-trabajos-container {
-        width: 100%;
-        max-width: 450px;
-    }
-
-    .trabajo-button {
-        display: block;
-        padding: 15px 30px;
-        margin: 20px 0;
-        
-        background-color: var(--button-color);
-        color: var(--main-color);
-        text-decoration: none;
-        
-        border-radius: 50px; 
-        font-family: var(--button-font);
-        font-size: 18px;
-        font-weight: 700;
-        text-transform: uppercase;
-        
-        transition: background-color 0.3s, box-shadow 0.3s;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    }
-
-    .trabajo-button:hover {
-        background-color: var(--main-color); 
-        color: var(--button-color);
-        box-shadow: none; 
-    }
-
-    /* Sección de la Imagen (Derecha) */
-    .trabajos-right-image {
-        width: 50%;
-        height: 100vh; 
-        overflow: hidden;
-    }
-
-    .trabajos-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; 
-        display: block;
-    }
-
-
-    /* --- MEDIA QUERIES (Responsividad) --- */
-
-    @media (max-width: 768px) {
-        .trabajos-container {
-            flex-direction: column; 
-            min-height: auto; 
-        }
-
-        .trabajos-left-menu, .trabajos-right-image {
-            width: 100%; 
-        }
-        
-        .trabajos-left-menu {
-            padding: 50px 30px;
-        }
-
-        .trabajos-right-image {
-            height: 450px; 
-        }
-        
-        .trabajos-title {
-            font-size: 10vw; 
-            margin-bottom: 40px;
-        }
-        
-        .menu-trabajos-container {
-            max-width: 350px; 
-        }
-        
-        .trabajo-button {
-            font-size: 16px;
-            padding: 12px 20px;
-            margin: 15px 0;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .trabajos-left-menu {
-            padding: 30px 10px; 
-        }
-
-        .trabajos-right-image {
-            height: 300px;
-        }
-
-        .trabajos-title {
-            font-size: 12vw;
-            margin-bottom: 30px;
-        }
-        
-        .menu-trabajos-container {
-            max-width: 95%; 
-        }
-
-        .trabajo-button {
-            font-size: 14px;
-            padding: 10px 15px;
-            margin: 10px 0;
-        }
-    }
-</style>

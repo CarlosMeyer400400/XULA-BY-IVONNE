@@ -1,0 +1,210 @@
+/* --- VARIABLES DE DISEÑO --- */
+:root {
+    /* Colores generales */
+    --main-bg: #E1DBD8; /* Fondo del menú */
+    --dark-text: #5C4F4B; 
+    --menu-text-color: #8D8583;
+}
+
+/* --- ESTILOS BASE Y ESTRUCTURA --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    /* Usa las fuentes que se ven en el diseño */
+    font-family: 'Montserrat', sans-serif; 
+    width: 100%;
+    overflow-x: hidden; 
+}
+
+.trabajos-container * {
+    box-sizing: border-box;
+}
+
+/* Contenedor principal de dos columnas */
+.trabajos-container {
+    display: flex;
+    min-height: 100vh; /* Para que la columna derecha cubra toda la altura */
+    width: 100%;
+}
+
+/* --- MENÚ IZQUIERDO (30% de ancho) --- */
+.trabajos-left-menu {
+    width: 30%; 
+    padding: 40px 20px;
+    background-color: var(--main-bg); 
+    color: var(--dark-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0; /* Evita que el menú se reduzca */
+}
+
+.trabajos-title {
+    font-family: 'Playfair Display', serif; /* Tipo de fuente para títulos grandes */
+    font-size: 2.5vw; 
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 50px;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    color: var(--dark-text);
+}
+
+.menu-trabajos-container {
+    width: 100%;
+    max-width: 250px;
+}
+
+/* Estilo de los botones del menú */
+.trabajo-button {
+    display: block;
+    width: 100%; 
+    padding: 15px 10px;
+    margin: 10px 0;
+    background-color: transparent; 
+    color: var(--menu-text-color); 
+    border: none;
+    border-bottom: 1px solid rgba(92, 79, 75, 0.1); 
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    cursor: pointer; 
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.trabajo-button:hover {
+    color: var(--dark-text); 
+    padding-left: 20px; 
+}
+
+/* Estilo ACTIVO (Resaltado del botón seleccionado) */
+.trabajo-button.active-menu {
+    color: var(--dark-text); 
+    font-weight: 900;
+    border-bottom: 2px solid var(--dark-text); 
+}
+
+/* --- CONTENIDO DERECHO (70% de ancho) --- */
+.content-container {
+    flex: 1; /* Ocupa el espacio restante (70%) */
+    height: 100vh;
+    min-width: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Contenido de la tarjeta (Texto + Imagen) */
+.trabajos-right-content {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* Oculto por defecto */
+    align-items: center;
+    
+    /* El color de fondo se aplica con [style.background-color]="trabajo.bgColor" en el HTML */
+}
+
+/* Solo muestra el contenido activo (controlado por *ngIf) */
+.trabajos-right-content.active-content {
+    display: flex; /* Vuelve a mostrarlo como flex para la estructura de 2 columnas */
+}
+
+/* Contenedor de la información (Texto, 40% del espacio) */
+.trabajo-info-box {
+    width: 40%; 
+    padding: 80px 70px 80px 50px; 
+    color: var(--dark-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    background-color: transparent; 
+}
+
+/* Contenedor de la imagen (60% del espacio) */
+.trabajo-image-box {
+    width: 60%; 
+    height: 100%; 
+    overflow: hidden;
+    flex-grow: 1; 
+    flex-shrink: 0;
+}
+
+.trabajo-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    display: block;
+}
+
+/* Estilos de los elementos de texto */
+.content-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 5rem); 
+    font-weight: 400;
+    margin-bottom: 20px;
+    word-break: break-word; 
+}
+
+.content-description {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.content-duration {
+    margin-top: 30px;
+    font-size: 1em;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.content-duration span {
+    font-weight: 700;
+    text-decoration: underline;
+    color: inherit;
+}
+
+.nav-arrow {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-size: 2em;
+    color: var(--dark-text);
+    cursor: pointer;
+}
+
+/* --- MEDIA QUERIES (Responsividad para móviles) --- */
+@media (max-width: 768px) {
+    .trabajos-container { 
+        flex-direction: column; 
+    }
+    .trabajos-left-menu, .content-container { 
+        width: 100%; 
+        height: auto; 
+    }
+    .trabajos-right-content { 
+        position: static; 
+        height: auto;
+        flex-direction: column; /* Apila el texto y la imagen verticalmente */
+    }
+    .trabajo-info-box, .trabajo-image-box { 
+        width: 100%;
+        padding: 40px 20px;
+    }
+    .trabajo-image-box { 
+        height: 300px; 
+        order: 2; 
+        padding: 0;
+    }
+    .trabajo-info-box { 
+        order: 1; 
+    }
+    .nav-arrow { 
+        display: none; 
+    }
+}
