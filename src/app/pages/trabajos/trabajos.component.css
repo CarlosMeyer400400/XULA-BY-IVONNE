@@ -204,5 +204,41 @@ body, html {
     .trabajo-info-box { 
         order: 1; 
     }
-    
+    /* trabajos.component.css (Modificado) */
+
+/* ... (Los estilos base y del menú se mantienen igual) ... */
+
+/* --- CONTENIDO DERECHO (70% de ancho) --- */
+
+/* ... (content-container y trabajos-right-content se mantienen igual) ... */
+
+/* Estilos PREDETERMINADOS (aplican cuando NO es bienvenida) */
+.trabajos-right-content:not(.bienvenida-mode) .trabajo-info-box {
+    width: 40%; 
+    padding: 80px 70px 80px 50px; 
+    /* Asegura que el info-box se muestre en modo normal (split) */
+    display: flex; 
+}
+.trabajos-right-content:not(.bienvenida-mode) .trabajo-image-box {
+    width: 60%; 
+}
+
+/* --- ESTILO DE BIENVENIDA (MODO IMAGEN COMPLETA) --- */
+.trabajos-right-content.bienvenida-mode {
+    /* Mantiene el display: flex; que ya tenías */
+    justify-content: flex-start; /* Opcional: para limpiar */
+}
+
+/* OCULTAR CAJA DE INFO en modo bienvenida */
+.trabajos-right-content.bienvenida-mode .trabajo-info-box {
+    display: none;
+}
+
+/* IMAGEN A ANCHO COMPLETO en modo bienvenida */
+.trabajos-right-content.bienvenida-mode .trabajo-image-box {
+    width: 100%; /* La imagen ocupa todo el ancho disponible */
+    /* El resto de las propiedades de la imagen (height, object-fit) se mantienen */
+}
+
+/* ... (El resto de estilos se mantiene igual) ... */
 }

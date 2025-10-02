@@ -4,13 +4,10 @@
         <h1>NUESTROS TRABAJOS</h1>
 
         <div class="menu-trabajos-container">
-            
             <button 
-                *ngFor="let trabajo of trabajosData"
+                *ngFor="let trabajo of getMenuTrabajos()" 
                 class="trabajo-button" 
-                
-                [ngClass]="{'active-menu': trabajo.id === trabajoActivoId}" 
-                
+                [class.active-menu]="trabajo.id === trabajoActivoId" 
                 (click)="cambiarTrabajo(trabajo.id)">
                 {{ trabajo.menuLabel }}
             </button>
@@ -20,12 +17,15 @@
     <div class="content-container">
 
         <div 
-          *ngIf="getActiveTrabajo() as trabajo" 
-          class="trabajos-right-content active-content" 
-          
-          [style.background-color]="trabajo.bgColor" 
-            id="trabajo-content">
-            <div class="trabajo-info-box">
+            *ngIf="getActiveTrabajo() as trabajo" 
+            class="trabajos-right-content active-content" 
+            [style.background-color]="trabajo.bgColor" 
+            id="trabajo-content"
+            [ngClass]="{'bienvenida-mode': isEstadoInicial()}">
+            
+            <div 
+                *ngIf="!isEstadoInicial()"
+                class="trabajo-info-box">
                 <h1 style="text-align: center;">{{ trabajo.title }}</h1>
                 
                 <p class="content-description">
@@ -33,15 +33,11 @@
                 </p>
 
                 <div class="content-duration">
-                        <span>{{ trabajo.duration }}</span>
+                    <span>{{ trabajo.duration }}</span>
                 </div>
-                    <p>
-                     <span>{{ trabajo.cuidado }}</span>
-                    </p>
-                   
-              
-
-                
+                <p>
+                    <span>{{ trabajo.cuidado }}</span>
+                </p>
             </div>
 
             <div class="trabajo-image-box">

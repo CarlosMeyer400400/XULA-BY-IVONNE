@@ -1,4 +1,4 @@
-// trabajos.component.ts (Actualizado)
+// trabajos.component.ts (Completo y Corregido)
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // <-- ¡IMPORTANTE!
@@ -23,14 +23,14 @@ interface Trabajo {
 })
 export class TrabajosComponent {
   
-  // ... (El resto de tu lógica de trabajosData y funciones se mantiene igual)
-
+  // 1. Establece el estado inicial para mostrar la imagen de bienvenida
   trabajoActivoId: string = 'uno';
 
   trabajosData: Trabajo[] = [
-     {
+    // El elemento 'uno' se usa para el estado de bienvenida y la imagen inicial.
+    {
       id: 'uno',
-      menuLabel: '',
+      menuLabel: '', // Vacio para NO aparecer en el menú
       title: '',
       description: '',
       duration: '',
@@ -67,7 +67,6 @@ export class TrabajosComponent {
       imagePath: 'latin_brows.png',
       bgColor: '#ffffff',
       cuidado: '(dependiendo del tipo de piel y cuidados posteriores)'
- 
     },
     {
       id: 'powderbrows',
@@ -88,7 +87,6 @@ export class TrabajosComponent {
       imagePath: 'nanoblading.png',
       bgColor: '#ffffff',
       cuidado: '(dependiendo del tipo de piel y cuidados posteriores)'
- 
     },
     {
       id: 'FULL LIPS',
@@ -99,9 +97,8 @@ export class TrabajosComponent {
       imagePath: 'fulllips.png',
       bgColor: '#ffffff',
       cuidado: '(dependiendo del tipo de piel y cuidados posteriores)'
- 
     },
-     {
+    {
       id: 'BABY LIPS',
       menuLabel: 'BABY LIPS',
       title: 'BABY LIPS',
@@ -110,7 +107,8 @@ export class TrabajosComponent {
       imagePath: 'babylips.png',
       bgColor: '#ffffff',
       cuidado: '(dependiendo del tipo de piel y cuidados posteriores)' 
-    }, {
+    }, 
+    {
       id: 'DELINEADO DE OJOS',
       menuLabel: 'DELINEADO DE OJOS',
       title: 'DELINEADO DE OJOS',
@@ -119,7 +117,8 @@ export class TrabajosComponent {
       imagePath: 'delineadoDeOjos.png',
       bgColor: '#ffffff',
       cuidado: '(dependiendo del tipo de piel y cuidados posteriores)'
-    }, {
+    }, 
+    {
       id: 'APLICACION DE UÑAS',
       menuLabel: 'APLICACION DE UÑAS',
       title: 'APLICACION DE UÑAS',
@@ -128,7 +127,8 @@ export class TrabajosComponent {
       imagePath: 'unas.png',
       bgColor: '#ffffff',
       cuidado: '' 
-    }, {
+    }, 
+    {
       id: 'PESTAÑAS CLASICAS',
       menuLabel: 'PESTAÑAS CLASICAS',
       title: 'PESTAÑAS CLASICAS',
@@ -137,7 +137,8 @@ export class TrabajosComponent {
       imagePath: 'pestanas clasicas.png',
       bgColor: '#ffffff',
       cuidado: '' 
-    }, {
+    }, 
+    {
       id: 'PESTAÑAS HIBRIDAS',
       menuLabel: 'PESTAÑAS HIBRIDAS',
       title: 'PESTAÑAS HIBRIDAS',
@@ -146,7 +147,8 @@ export class TrabajosComponent {
       imagePath: 'pestanas hibridas.png',
       bgColor: '#ffffff',
       cuidado: '' 
-    }, {
+    }, 
+    {
       id: 'LIFFTING DE PESTAÑAS',
       menuLabel: 'LIFFTING DE PESTAÑAS',
       title: 'LIFFTING DE PESTAÑAS',
@@ -155,7 +157,8 @@ export class TrabajosComponent {
       imagePath: 'LIFFTING.png',
       bgColor: '#ffffff',
       cuidado: '' 
-    }, {
+    }, 
+    {
       id: 'PESTAÑAS EFECTOS',
       menuLabel: 'PESTAÑAS EFECTOS',
       title: 'PESTAÑAS EFECTOS',
@@ -167,21 +170,43 @@ export class TrabajosComponent {
     }
   ];
   
- cambiarTrabajo(id: string) {
-  this.trabajoActivoId = id;
+  /**
+   * 2. Filtra la lista de trabajos para NO mostrar el elemento 'uno' en el menú.
+   * @returns Array de objetos Trabajo excluyendo el de bienvenida.
+   */
+  getMenuTrabajos(): Trabajo[] {
+    return this.trabajosData.filter(t => t.id !== 'uno');
+  }
 
-  // Espera un poco para que Angular pinte el nuevo contenido
-  setTimeout(() => {
-    const content = document.getElementById("trabajo-content");
-    if (content) {
-      content.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, 100);
-}
-  
+  /**
+   * 3. Retorna el objeto Trabajo actualmente activo.
+   * @returns El objeto Trabajo o undefined.
+   */
   getActiveTrabajo(): Trabajo | undefined {
     return this.trabajosData.find(t => t.id === this.trabajoActivoId);
   }
 
-  
+  /**
+   * 4. Verifica si el estado actual es el inicial de bienvenida.
+   * @returns true si el id activo es 'uno', false en caso contrario.
+   */
+  isEstadoInicial(): boolean {
+    return this.trabajoActivoId === 'uno';
+  }
+
+  /**
+   * 5. Cambia el trabajo activo al hacer clic en una opción del menú.
+   * @param id El ID del trabajo a mostrar.
+   */
+  cambiarTrabajo(id: string) {
+    this.trabajoActivoId = id;
+
+    // Espera un poco para que Angular pinte el nuevo contenido y haga scroll
+    setTimeout(() => {
+      const content = document.getElementById("trabajo-content");
+      if (content) {
+        content.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
+  }
 }
