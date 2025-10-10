@@ -1,50 +1,57 @@
 <div class="trabajos-container">
-    
-    <div class="trabajos-left-menu">
-        <h1>NUESTROS TRABAJOS</h1>
 
-        <div class="menu-trabajos-container">
-            <button 
-                *ngFor="let trabajo of getMenuTrabajos()" 
-                class="trabajo-button" 
-                [class.active-menu]="trabajo.id === trabajoActivoId" 
-                (click)="cambiarTrabajo(trabajo.id)">
-                {{ trabajo.menuLabel }}
-            </button>
+  <!-- MENÚ IZQUIERDO -->
+ <div class="trabajos-left-menu">
+  <h1>NUESTROS TRABAJOS</h1>
+
+  <div class="menu-trabajos-container">
+    <button 
+      *ngFor="let trabajo of getMenuTrabajos()" 
+      class="trabajo-button" 
+      [class.active-menu]="trabajo.id === trabajoActivoId" 
+      (click)="cambiarTrabajo(trabajo.id)">
+      {{ trabajo.menuLabel }}
+    </button>
+  </div>
+</div>
+
+
+  <!-- CONTENIDO DERECHO -->
+  <div class="content-container">
+
+    <div 
+      *ngIf="getActiveTrabajo() as trabajo" 
+      class="trabajos-right-content active-content" 
+      [style.background-color]="trabajo.bgColor" 
+      id="trabajo-content"
+      [class.bienvenida-mode]="isEstadoInicial()">
+
+      <!-- MODO NORMAL -->
+      <div *ngIf="!isEstadoInicial()" class="trabajo-info-box">
+        <h1 style="text-align: center;">{{ trabajo.title }}</h1>
+
+        <p class="content-description">
+          {{ trabajo.description }}
+        </p>
+
+        <div class="content-duration">
+          <span>{{ trabajo.duration }}</span>
         </div>
+
+        <p>
+          <span>{{ trabajo.cuidado }}</span>
+        </p>
+      </div>
+
+      <!-- IMAGEN -->
+      <div class="trabajo-image-box">
+        <img 
+          [src]="trabajo.imagePath" 
+          [alt]="'Resultado de ' + trabajo.title">
+      </div>
+
     </div>
 
-    <div class="content-container">
+  </div>
 
-        <div 
-            *ngIf="getActiveTrabajo() as trabajo" 
-            class="trabajos-right-content active-content" 
-            [style.background-color]="trabajo.bgColor" 
-            id="trabajo-content"
-            [ngClass]="{'bienvenida-mode': isEstadoInicial()}">
-            
-            <div 
-                *ngIf="!isEstadoInicial()"
-                class="trabajo-info-box">
-                <h1 style="text-align: center;">{{ trabajo.title }}</h1>
-                
-                <p class="content-description">
-                    {{ trabajo.description }}
-                </p>
-
-                <div class="content-duration">
-                    <span>{{ trabajo.duration }}</span>
-                </div>
-                <p>
-                    <span>{{ trabajo.cuidado }}</span>
-                </p>
-            </div>
-
-            <div class="trabajo-image-box">
-                <img [src]="'/assets/trabajo/' + trabajo.imagePath" [alt]="'Resultado de ' + trabajo.title">
-            </div>
-        </div>
-        
-    </div>
-    
 </div>
